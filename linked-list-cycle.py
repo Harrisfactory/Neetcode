@@ -7,13 +7,12 @@
 class Solution:
     def hasCycle(self, head: Optional[ListNode]) -> bool:
         
-        seen_elems = set()
+        slow_p = head
+        fast_p = head
 
-        cur = head
-        while cur:
-            if cur in seen_elems:
+        while slow_p and fast_p and fast_p.next:
+            slow_p = slow_p.next
+            fast_p = fast_p.next.next
+            if slow_p == fast_p:
                 return True
-            seen_elems.add(cur)
-            cur = cur.next
-
         return False
